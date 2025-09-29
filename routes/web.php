@@ -13,8 +13,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-Route::get('/about', function () {
-    return Inertia::render('About');
+Route::get('/', function () {
+    return Inertia::render('Home');
 });
 
 /* Route::get('/events', [EventController::class, 'index']);
