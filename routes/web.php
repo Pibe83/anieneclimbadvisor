@@ -13,5 +13,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+Route::get('/about', function () {
+    return Inertia::render('About');
+});
+
+/* Route::get('/events', [EventController::class, 'index']);
+Route::get('/events/{event}', [EventController::class, 'show']);
+Route::post('/events', [EventController::class, 'store']);
+Route::post('/events/{event}/boulders', [EventController::class, 'addBoulder']); */
+
+Route::get('/events', function () {
+    return Inertia::render('Events'); // nome del file Events.tsx
+});
+
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';
