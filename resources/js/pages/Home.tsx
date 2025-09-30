@@ -1,6 +1,6 @@
-import EventCardViewer from '@/components/common/EventCardViewer';
 import FullScreenDialog from '@/components/common/FullScreenDialog';
 import PositionedSnackbar from '@/components/common/Snackbar';
+import EventCardViewer from '@/components/layout/EventCardViewer';
 import EventForm from '@/components/layout/EventForm';
 import { useToggle } from '@/customHooks/useToggle';
 import { Box, Button } from '@mui/material';
