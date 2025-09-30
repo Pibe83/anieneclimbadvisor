@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 // import { Inertia } from '@inertiajs/core';
 import { useGetEvents } from '../../services';
 import type { IEventCard, IEventForm } from '../../utilities';
-import EventCard from './EventCard';
+import EventCard from '../common/EventCard';
 
 export default function EventCardViewer() {
     const response = useGetEvents();
