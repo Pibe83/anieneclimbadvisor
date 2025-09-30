@@ -11,10 +11,10 @@ Route::get('events/{event}', [EventController::class, 'show']);
 // Solo admin
 Route::middleware(['role:admin'])->group(function () {
     Route::post('events', [EventController::class, 'store']);
-    Route::put('events/{event}', [EventController::class, 'update']);
+    Route::patch('events/{event}', [EventController::class, 'update']);
     Route::delete('events/{event}', [EventController::class, 'destroy']);
     Route::post('events/{event}/boulders', [EventController::class, 'addBoulder']);
-});
+}); 
 
 //  Boulder API
 Route::get('boulders', [BoulderController::class, 'index']);

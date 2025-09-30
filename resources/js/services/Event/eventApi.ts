@@ -32,7 +32,7 @@ export const addEvent = async (data: any): Promise<any> => {
 // DELETE
 
 export const deleteEvent = async (id: number): Promise<any> => {
-    const res = await fetch(`http://localhost:3000/v1/events/${id}`, {
+    const res = await fetch(`http://localhost:8000/api/events/${id}`, {
         method: 'DELETE',
     });
     return res.json();
@@ -44,7 +44,7 @@ export const updateEvent = async (
     id: number,
     data: Partial<IEventForm>,
 ): Promise<any> => {
-    const res = await fetch(`http://localhost:3000/v1/events/${id}`, {
+    const res = await fetch(`http://localhost:8000/api/events/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
