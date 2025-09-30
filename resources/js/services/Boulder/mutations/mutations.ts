@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addEvent, deleteEvent, updateEvent } from "../eventApi";
-import type { IEventForm } from "../../../utilities";
+import { addBoulder, deleteBoulder, updateBoulder } from "../boulderApi";
+import type { IBoulder } from "../../../utilities/interfaces";
 import { useSnackbar } from "../../../contexts/SnackbarContext";
 
-export const useAddEvent = () => {
+export const useAddBoulder = () => {
   const { showSnackbar } = useSnackbar();
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: any) => addEvent(data),
+    mutationFn: (data: IBoulder) => addBoulder(data),
     // intercept mutation at each stage of its lifecycle
 
     // onMutate --> start mutation
@@ -16,30 +16,35 @@ export const useAddEvent = () => {
     },
     onSuccess: () => {
       console.log("success");
-      showSnackbar("Evento creato con successo");
+      showSnackbar("Buolder creato con successo");
     },
     onError: () => {
       console.log("error");
-      showSnackbar("Errore nella creazione dell evento");
+      showSnackbar("Errore nella creazione del boulder");
     },
     // on Settled --> end  mutation
     onSettled: async (_, error) => {
       if (error) console.log(error);
-      else await queryClient.invalidateQueries({ queryKey: ["events"] });
+      else
+        await queryClient.invalidateQueries({
+          queryKey: ["events"],
+        });
     },
   });
 };
 
-export const useDeleteEvent = () => {
+export const useDeleteBoulder = () => {
   const { showSnackbar } = useSnackbar();
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (id: number) => deleteEvent(id),
+    mutationFn: (id: number) => deleteBoulder(id),
     onSuccess: () => {
-      showSnackbar("Evento eliminato con successo");
+      console.log("success");
+      showSnackbar("Buolder eliminato con successo");
     },
     onError: () => {
-      showSnackbar("Errore nell eliminazione dell evento");
+      console.log("error");
+      showSnackbar("Errore nell eliminazione del boulder");
     },
     onSettled: async (_, error) => {
       if (error) console.log(error);
@@ -48,21 +53,26 @@ export const useDeleteEvent = () => {
   });
 };
 
-export const useUpdateEvent = () => {
+export const useUpdateBoulder = () => {
   const { showSnackbar } = useSnackbar();
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, data }: { id: number; data: Partial<IEventForm> }) =>
-      updateEvent(id, data),
+    mutationFn: ({ id, data }: { id: number; data: IBoulder }) =>
+      updateBoulder(id, data),
     onSuccess: () => {
-      showSnackbar("Evento aggiornato con successo");
+      console.log("success");
+      showSnackbar("Buolder aggiornato con successo");
     },
     onError: () => {
-      showSnackbar("Errore nell aggiornamento dell evento");
+      console.log("error");
+      showSnackbar("Errore nell aggiornamento del boulder");
     },
     onSettled: async (_, error) => {
       if (error) console.log(error);
-      else await queryClient.invalidateQueries({ queryKey: ["events"] });
+      else
+        await queryClient.invalidateQueries({
+          queryKey: ["events"],
+        });
     },
   });
 };
