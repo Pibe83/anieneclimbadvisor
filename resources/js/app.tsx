@@ -1,10 +1,18 @@
-import '../css/app.css';
-
+import { ThemeProvider } from '@emotion/react';
 import { createInertiaApp } from '@inertiajs/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
-import { initializeTheme } from './hooks/use-appearance';
+import '../css/app.css';
+import {
+    BoulderIdProvider,
+    LatLongProvider,
+    SnackbarProvider,
+} from './contexts';
+// import { initializeTheme } from './hooks/use-appearance';
+import { theme } from './theme';
 
+const queryClient = new QueryClient();
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
@@ -17,7 +25,19 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
 
-        root.render(<App {...props} />);
+        root.render(
+            <QueryClientProvider client={queryClient}>
+                <ThemeProvider theme={theme}>
+                    <SnackbarProvider>
+                        <LatLongProvider>
+                            <BoulderIdProvider>
+                                <App {...props} />
+                            </BoulderIdProvider>
+                        </LatLongProvider>
+                    </SnackbarProvider>
+                </ThemeProvider>
+            </QueryClientProvider>,
+        );
     },
     progress: {
         color: '#4B5563',
@@ -25,4 +45,4 @@ createInertiaApp({
 });
 
 // This will set light / dark mode on load...
-initializeTheme();
+// initializeTheme();
