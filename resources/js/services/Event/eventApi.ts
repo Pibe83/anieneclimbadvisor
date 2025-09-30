@@ -21,7 +21,7 @@ export const getEventWithBouldersById = async (
 // POST
 
 export const addEvent = async (data: any): Promise<any> => {
-    const res = await fetch('http://localhost:3000/v1/events/add', {
+    const res = await fetch('http://localhost:8000/api/events', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
