@@ -1,11 +1,11 @@
-import FullScreenDialog from '@/components/common/FullScreenDialog';
-import PositionedSnackbar from '@/components/common/Snackbar';
-import EventCardViewer from '@/components/layout/EventCardViewer';
-import EventForm from '@/components/layout/EventForm';
-import { useToggle } from '@/customHooks/useToggle';
 import { Box, Button } from '@mui/material';
+import { useToggle } from '../../customHooks/useToggle';
+import EventCardViewer from '../layout/EventCardViewer';
+import EventForm from '../layout/EventForm';
+import FullScreenDialog from './FullScreenDialog';
+import PositionedSnackbar from './Snackbar';
 
-export default function Home() {
+export default function EventEditor() {
     const [value, setToggle] = useToggle(false);
 
     return (
